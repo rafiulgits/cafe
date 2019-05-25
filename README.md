@@ -46,7 +46,9 @@
     ```
   
   * Create a superuser
-  > python manage.py createsuperuser
+   
+   `python manage.py createsuperuser`
+   
     ```
     Userid: DB0001
     Name: Mr. User
