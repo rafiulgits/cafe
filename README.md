@@ -97,3 +97,21 @@
   * ##### Create Group:
   
     Group is a collection of permission to access the admin panel. Make a group with some permission and add staff user on the group to access those.
+
+
+
+****
+
+
+
+## Email Setup:
+
+Create a Gmail account and access third party application by turn on app access from `https://myaccount.google.com/lesssecureapps`
+
+In `cafe/settings.py`
+
+```python
+EMAIL_HOST_USER='myemail@gmail.com'
+EMAIL_HOST_PASSWORD='mypassword'
+```
+
