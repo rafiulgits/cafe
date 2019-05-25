@@ -49,20 +49,20 @@
     
  * Create a superuser
  
- ```
- python manage.py createsuperuser
- ```
- 
- ```
- Userid: DB0001
- Name: Mr. User
- Phone: XXXXXXXXX
- Email: example@mail.com
- Gender: M
- Card: 12321431231
- Password:********
- Password (again): ********
- This password is too common.
- Bypass password validation and create user anyway? [y/N]: y
- Superuser created successfully.
- ```
+  ```
+  python manage.py createsuperuser
+  ```
+
+  ```
+  Userid: DB0001
+  Name: Mr. User
+  Phone: XXXXXXXXX
+  Email: example@mail.com
+  Gender: M
+  Card: 12321431231
+  Password:********
+  Password (again): ********
+  This password is too common.
+  Bypass password validation and create user anyway? [y/N]: y
+  Superuser created successfully.
+  ```
