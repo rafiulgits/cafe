@@ -32,6 +32,7 @@
       
   * Model sync with DB:
     * Open command window in project root directory and make these commands (Linux)
+    
      ```
      python3 manage.py makemigrations user
      python3 manage.py makemigrations home
@@ -39,26 +40,29 @@
      ```
     
     * Windows
+    
     ```
     python manage.py makemigrations user
     python manage.py makemigrations home
     python manage.py migrate
     ```
-  
-  * Create a superuser
-   
-   `python manage.py createsuperuser`
-   
-    ```
-    Userid: DB0001
-    Name: Mr. User
-    Phone: XXXXXXXXX
-    Email: example@mail.com
-    Gender: M
-    Card: 12321431231
-    Password:********
-    Password (again): ********
-    This password is too common.
-    Bypass password validation and create user anyway? [y/N]: y
-    Superuser created successfully.
-    ```
+    
+ * Create a superuser
+ 
+ ```
+ python manage.py createsuperuser
+ ```
+ 
+ ```
+ Userid: DB0001
+ Name: Mr. User
+ Phone: XXXXXXXXX
+ Email: example@mail.com
+ Gender: M
+ Card: 12321431231
+ Password:********
+ Password (again): ********
+ This password is too common.
+ Bypass password validation and create user anyway? [y/N]: y
+ Superuser created successfully.
+ ```
