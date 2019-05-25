@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+	<title>My Orders</title>
+{% endblock %}
+
+{% block extra_body %}
+	<div class="d-flex justify-content-center">
+		<div class="col-md-8 mt-3 mb-5">
+			<h5 class="list-group-item text-center">My Orders</h5>
+			<table class="table table-bordered table-dark mb-0">
+				<thead>
+					<tr>
+						<th>Cart ID</th>
+						<th>Branch</th>
+						<th>Total</th>
+						<th>Request On</th>
+						<th>Collection Time</th>
+						<th>Delivered</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for item in orders %}
+						<tr>
+							<td>{{ item.cart_number }}</td>
+							<td>{{ item.branch.name }}</td>
+							<td>{{ item.total }}</td>
+							<td>{{ item.request_on }}</td>
+							<td>{{ item.collection_time }}</td>
+							<td>{{ item.delivered }}</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}
+
+{% block extra_scripts %}
+{% endblock %}

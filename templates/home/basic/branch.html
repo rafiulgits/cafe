@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+	<title>{{ cafe_branch.name }}</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/generic/card.css' %}">
+{% endblock %}
+
+{% block extra_body %}
+	
+	<div class="container-fluid mt-3 mb-3">
+		<div class="row justify-content-center">
+			{% for item in food_list %}
+				<div class="col-md-4">
+					<figure class="card-container dash-card">
+				        <img src="/media/{{item.food.image}}">
+				        <figcaption>
+				            <h3 class="title">{{ item.food.name }}</h3>
+				            <p class="title1">{{ item.food.description }}</p>
+				            <p class="title1">Price {{ item.food.price}}</p>
+				            <p class="title1">Expired {{ item.food.expired_date }}</p>
+				        </figcaption>
+				        <a href="javascript:void(0)" class="btn product-request" data-toggle="modal" data-target="#cart-model-{{item.id}}"></a>
+                           <div class="modal fade" id="cart-model-{{item.id}}">
+                                <div class="modal-dialog">
+                                    <div class="modal-content"> 
+                                    	<div class="model-head">
+                                    		<h5 class="text-dark text-center">Add To Cart</h5>
+                                    	</div>
+                                        <div class="modal-body">
+                                            <h6 class="text-dark">
+                                            	Item: {{ item.food.name }}
+                                        	</h6>
+                                        	<h6 class="text-dark" id="detail-{{item.id}}">Quantity: 0</h6>
+                                        	<button class="btn btn-success"
+                                        	onclick="addToCart({{item.id}},{{cafe_branch.id}}, 'detail-{{item.id}}')" id="cart-model-{{item.id}}">Add</button>
+                                        </div>
+                                        <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+				    </figure>
+				</div>
+			{% empty %}
+				<h1>No Food Available</h1>
+			{% endfor %}
+		</div>
+	</div>
+
+{% endblock %}
+
+{% block extra_scripts %}
+	<script type="text/javascript" src="{% static 'js/home/branch.js' %}"></script>
+{% endblock %}

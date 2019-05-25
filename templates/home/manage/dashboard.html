@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+	<title>Staff Dashboard</title>
+{% endblock %}
+
+{% block extra_body %}
+	<h4 class="list-group-item text-center">{{ cafe_branch.name }}</h4>
+	<div class="container-fluid">
+		<div class="row justify-content-center mt-3 mb-3">
+			{% if request.user == cafe_branch.manager %}
+				<div class="col-md-3">
+					<div class="list-group">
+						<h6 class="list-group-item bg-primary text-white">Manage</h6>
+						<a href="/branch/{{cafe_branch.id}}/{{cafe_branch.name}}/update/food/" class="list-group-item list-group-item-primary">Food List</a>
+						<a href="/branch/{{cafe_branch.id}}/{{cafe_branch.name}}/update/time/" class="list-group-item list-group-item-primary">Cafe Time</a>
+					</div>
+				</div>
+			{% endif %}
+			<div class="col-md-8">
+				<h5 class="list-group-item text-center">Today's Orders</h5>
+				<table class="table table-bordered table-dark mb-0">
+					<thead>
+						<tr>
+							<th>Cart ID</th>
+							<th>User</th>
+							<th>Total</th>
+							<th>Request On</th>
+							<th>Collection Time</th>
+							<th>Delivered</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for item in orders %}
+							<tr>
+								<td><a href="/dashboard/order/{{item.cart_number}}/">{{ item.cart_number }}</a></td>
+								<td>{{ item.user.userid }}</td>
+								<td>{{ item.total }}</td>
+								<td>{{ item.request_on | time }}</td>
+								<td>{{ item.collection_time }}</td>
+								<td>{{ item.delivered }}</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block extra_scripts %}
+{% endblock %}

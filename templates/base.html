@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="{% static 'libs/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+	{% block extra_head %}
+	{% endblock %}
+
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #30147C">
+		<a href="/" class="navbar-brand">Cafe</a>
+		<button class="navbar-toggler" data-toggle="collapse" data-target="#site-navbar" area-expended="false" area-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="site-navbar">
+			<div class="navbar-nav">
+				{% if request.user.is_authenticated %}
+					<a href="/profile/" class="nav-item nav-link">{{request.user.name}}</a>
+					<a href="/cart/" class="nav-item nav-link">
+						<img src="{% static 'res/cart.svg'%}" height="20px" width="20px"> Cart
+					</a>
+					<a href="/my-orders/" class="nav-item nav-link">My Orders</a>
+					{% if request.user.is_staff and not request.user.is_superuser %}
+						<a href="/dashboard/" class="nav-item nav-link">Dashboard</a>
+					{% endif %}
+					{% if request.user.is_superuser %}
+						<a href="/admin/" class="nav-item nav-link">Admin Panel</a>
+					{% endif %}
+					<a href="/signout/" class="nav-item nav-link">Signout</a>
+				{% else %}
+					<a href="/signup/" class="nav-item nav-link">Signup</a>
+					<a href="/signin/" class="nav-item nav-link">Signin</a>
+				{% endif %}
+			</div>
+		</div>
+	</nav>
+	{% block extra_body %}
+	{% endblock %}
+
+	<script type="text/javascript" src="{% static 'libs/js/jquery.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'libs/js/popper.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'libs/js/bootstrap.min.js' %}"></script>
+	{% block extra_scripts %}
+	{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+	<title>Signin</title>
+{% endblock %}
+
+{% block extra_body %}
+	<div class="d-flex justify-content-center mt-5">
+		<div class="col-md-5 list-group-item">
+			<form method="POST">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<button class="btn btn-success">Signin</button>
+			</form>
+			<br>
+			<a href="/password-reset/" class="list-group-item">Forget password</a>
+			<a href="/signup/" class="list-group-item">Create a new account</a>
+		</div>
+	</div>
+{% endblock %}
+
+{% block extra_scripts %}
+{% endblock %}

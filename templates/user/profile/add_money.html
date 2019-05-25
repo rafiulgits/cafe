@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+	<title>Add Money</title>
+{% endblock %}
+
+{% block extra_body %}
+	<div class="d-flex justify-content-center mt-3 mb-3">
+		<div class="col-md-6 list-group-item">
+			<h6 class="list-group-item">Current Balance: {{request.user.balance}}</h6>
+			<form method="POST">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<button class="btn btn-success">Add</button>
+			</form>
+		</div>
+	</div>
+{% endblock %}
+
+{% block extra_scripts %}
+{% endblock %}

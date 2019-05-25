@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+	<title>Cart Checkout</title>
+{% endblock %}
+
+{% block extra_body %}
+	<div class="d-flex justify-content-center">
+		<div class="col-md-4">
+			<h5 class="list-group-item bg-success text-white">Your order have been placed</h5>
+			<p class="list-group-item h6">Order Cart ID: {{ order.cart_number }} </p>
+			<p class="list-group-item h6">Total Price : {{ order.total }}</p>
+			<p class="list-group-item h6">Collection Time: {{ order.collection_time }}</p>
+		</div>
+	</div>
+{% endblock %}
+
+{% block extra_scripts %}
+{% endblock %}

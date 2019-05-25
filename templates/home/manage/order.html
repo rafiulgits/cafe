@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+	<title>Order Cart</title>
+{% endblock %}
+
+{% block extra_body %}
+	<div class="container-fluid">
+		<div class="row justify-content-center mt-3 mb-3">
+			<div class="col-md-8">
+				<h5 class="list-group-item text-center">Order : {{ order.cart_number }}</h5>
+				<table class="table table-bordered table-dark mb-0">
+					<thead>
+						<tr>
+							<th>Food Name</th>
+							<th>Price</th>
+							<th>Quantity</th>
+							<th>Sub total</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for item in item_list %}
+							<tr>
+								<td>{{ item.branch_food.food.name }}</td>
+								<td>{{ item.price }}</td>
+								<td>{{ item.quantity }}</td>
+								<td>{{ item.sub_total }}</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+				{% if not order.delivered %}
+					<form method="POST">
+						{% csrf_token %}
+						<button class="btn btn-success btn-lg" type="submit">Deliver</button>
+					</form>
+				{% else %}
+					<h5 class="btn btn-success btn-lg">Delivered</h5>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block extra_scripts %}
+{% endblock %}

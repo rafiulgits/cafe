@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+	<title>Signup</title>
+{% endblock %}
+
+{% block extra_body %}
+	<div class="d-flex justify-content-center mt-5 mb-5">
+		<div class="col-md-5 list-group-item">
+			<form method="POST" enctype="multipart/form-data">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<button class="btn btn-success">Signup</button>
+			</form>
+		</div>
+	</div>
+{% endblock %}
+
+{% block extra_scripts %}
+{% endblock %}

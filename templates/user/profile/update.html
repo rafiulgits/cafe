@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+	<title>Profile Update</title>
+{% endblock %}
+
+{% block extra_body %}
+	<div class="d-flex justify-content-center">
+		<div class="col-md-8 list-group-item">
+			<form method="POST">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<button class="btn btn-success">Update</button>
+			</form>
+		</div>
+	</div>
+{% endblock %}
+
+{% block extra_scripts %}
+{% endblock %}

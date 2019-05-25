@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+	<title>Cart</title>
+{% endblock %}
+
+{% block extra_body %}
+	<div class="container-fluid">
+		<div class="row justify-content-center">
+			{% if has_items  %}
+				<div class="col-md-10 mt-3 mb-3">
+					<table class="table table-bordered table-dark mb-0">
+						<thead>
+							<tr>
+								<th>Branch</th>
+								<th>Food</th>
+								<th>Price</th>
+								<th>Quantity</th>
+								<th>Sub-Total</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for item in item_list %}
+								<tr>
+									<td>{{ item.branch_food.branch.name }}</td>
+									<td>{{ item.branch_food.food.name }}</td>
+									<td>{{ item.branch_food.food.price }}</td>
+									<td class="text-center"><a href="/cart/update/?op=rem&branch_food_id={{item.branch_food.id}}" class="btn btn-sm btn-danger float-left">-</a>{{ item.quantity }}<a href="/cart/update/?op=add&branch_food_id={{item.branch_food.id}}" class="btn btn-sm btn-success float-right">+</a></td>
+									<td>{{ item.sub_total }}</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>			
+					{% if total > request.user.balance %}
+						<div class="list-group list-group-horizontal">
+							<p class="h4 list-group-item list-group-item-secondary"> Total = {{ total }}</p>
+							<p class="h4 list-group-item list-group-item-danger">Balance: {{request.user.balance}}</p>
+						</div>
+					{% else %}
+						<div class="list-group list-group-horizontal">
+							<p class="h4 list-group-item list-group-item-secondary"> Total = {{ total }}</p>
+							<p class="h4 list-group-item list-group-item-success">Balance: {{request.user.balance}}</p>
+						</div>
+						<br>
+						<p class="list-group-item list-group-item-primary">Select Collection Time and Request for Order</p>
+						<form method="POST" class="form-inline" action="/cart/checkout/">
+							{% csrf_token %}
+							<select class="custom-select" name="collection_time">
+								{% for item in time_slots %}
+									<option value="{{item}}">{{ item }}</option>
+								{% endfor %}
+							</select>
+							<button type="submit" class="btn btn-success">Request order</button>
+						</form>
+					{% endif %}
+				</div>
+			{% else %}
+				<h1 align="center">No item in cart</h1>
+			{% endif %}
+		</div>
+	</div>
+	
+{% endblock %}
+
+{% block extra_scripts %}
+{% endblock %}

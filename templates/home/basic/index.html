@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_head %}
+	<title>Cafe : Home</title>
+{% endblock %}
+
+{% block extra_body %}
+	
+	<div class="container-fluid mt-3">
+		<div class="row">
+			{% for item in branch_list %}
+				<div class="col-md-4">
+					<div class="card text-white bg-secondary">
+						<div class="card-body">
+							<h5 class="card-title">{{item.name}}</h5>
+							<p>Openning Time : {{item.opening_time }}</p>
+							<p>Closing Time: {{item.closing_time}}</p>
+							<a href="/branch/{{item.id}}/{{item.name}}/" class="card-link btn btn-light">Go</a>
+						</div>
+					</div>
+				</div>
+			{% empty %}
+				<h5 class="list-group-item text-center">No cafe branch available</h5>
+			{% endfor %}
+		</div>
+	</div>
+
+	
+{% endblock %}
+
+{% block extra_scripts %}
+{% endblock %}
